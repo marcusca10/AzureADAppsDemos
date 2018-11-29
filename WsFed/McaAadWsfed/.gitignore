@@ -1,0 +1,2 @@
+# Exclude local development files to protect secure information
+appsettings.Development.json

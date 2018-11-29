@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace McaAadWsfed
+namespace Marcusca10.AadAppsDemos.Wsfed
 {
     public class Startup
     {

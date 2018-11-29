@@ -1,6 +1,6 @@
 using System;
 
-namespace McaAadWsfed.Models
+namespace Marcusca10.AadAppsDemos.Wsfed.Models
 {
     public class ErrorViewModel
     {

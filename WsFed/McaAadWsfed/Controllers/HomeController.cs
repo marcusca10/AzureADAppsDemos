@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using McaAadWsfed.Models;
+using Marcusca10.AadAppsDemos.Wsfed.Models;
 
-namespace McaAadWsfed.Controllers
+namespace Marcusca10.AadAppsDemos.Wsfed.Controllers
 {
     public class HomeController : Controller
     {

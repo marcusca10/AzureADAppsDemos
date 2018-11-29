@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace McaAadWsfed
+namespace Marcusca10.AadAppsDemos.Wsfed
 {
     public class Program
     {
