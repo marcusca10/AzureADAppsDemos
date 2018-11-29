@@ -19,7 +19,9 @@ namespace Marcusca10.AadAppsDemos.Wsfed.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            // If claims are present show in the about View
+            if (User.Claims != null) { return View(User.Claims); }
+            else { return View(); };
         }
 
         public IActionResult Contact()
