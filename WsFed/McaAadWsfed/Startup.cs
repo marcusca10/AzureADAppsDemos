@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.WsFederation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,25 @@ namespace McaAadWsfed
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Adding authentication support
+            services
+                .AddAuthentication((sharedOptions =>
+                {
+                    sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    sharedOptions.DefaultChallengeScheme = WsFederationDefaults.AuthenticationScheme;
+                }))
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Signin";
+                })
+                .AddWsFederation(options =>
+                {
+                    // MetadataAddress represents the Active Directory instance used to authenticate users.
+                    options.MetadataAddress = Configuration["WsFed:MetadataAddress"];
+                    // Wtrealm is the app's identifier in the Active Directory instance.
+                    // For AAD, use the App ID URI from the app registration's Properties blade:
+                    options.Wtrealm = Configuration["WsFed:Wtrealm"];
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,6 +72,9 @@ namespace McaAadWsfed
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            // Adding authentication support
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
